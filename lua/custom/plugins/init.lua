@@ -3,7 +3,6 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  'gpanders/nvim-parinfer',
   {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
