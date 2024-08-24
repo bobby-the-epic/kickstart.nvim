@@ -643,7 +643,7 @@ require('lazy').setup({
       },
       formatters = {
         clang_format = {
-          prepend_args = { '--style=Microsoft' },
+          prepend_args = { '--style=file', '--fallback-style=Microsoft' },
         },
       },
     },
