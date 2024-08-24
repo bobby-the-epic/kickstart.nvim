@@ -2,7 +2,7 @@
 if find ~/.cache/nvim/server.pipe; then
         nvim --server ~/.cache/nvim/server.pipe --remote-tab "$1"
 else
-        kitty nvim --listen ~/.cache/nvim/server.pipe
+        kitty nvim --listen ~/.cache/nvim/server.pipe &
         while ! find ~/.cache/nvim/server.pipe
         do
                 continue
