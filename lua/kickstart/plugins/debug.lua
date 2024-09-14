@@ -24,6 +24,36 @@ return {
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
   },
+  opts = function()
+    local dap = require 'dap'
+    dap.configurations.cpp = {
+      {
+        name = 'Launch File',
+        type = 'codelldb',
+        request = 'launch',
+        program = '${command:pickFile}',
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+      {
+        name = 'Godot Editor Debug',
+        type = 'codelldb',
+        request = 'launch',
+        program = '${env:HOME}/godot/bin/godot.linuxbsd.editor.x86_64.mono',
+        args = { '-e' },
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+      {
+        name = 'Godot Game Debug',
+        type = 'codelldb',
+        request = 'launch',
+        program = '${env:HOME}/godot/bin/godot.linuxbsd.editor.x86_64.mono',
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+    }
+  end,
   keys = function(_, keys)
     local dap = require 'dap'
     local dapui = require 'dapui'
