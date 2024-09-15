@@ -25,20 +25,26 @@ return {
   },
   opts = function()
     local dap = require 'dap'
+    if not dap.adapters['codelldb'] then
+      require('dap').adapters['codelldb'] = {
+        type = 'server',
+        host = 'localhost',
+        port = '${port}',
+        executable = {
+          command = 'codelldb',
+          args = {
+            '--port',
+            '${port}',
+          },
+        },
+      }
+    end
     dap.configurations.cpp = {
-      {
-        name = 'Launch File',
-        type = 'codelldb',
-        request = 'launch',
-        program = '${command:pickFile}',
-        cwd = '${workspaceFolder}',
-        stopOnEntry = false,
-      },
       {
         name = 'Godot Editor Debug',
         type = 'codelldb',
         request = 'launch',
-        program = 'godot.linuxbsd.editor.x86_64.mono',
+        program = '${env:godot}',
         args = { '-e' },
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
@@ -47,7 +53,15 @@ return {
         name = 'Godot Game Debug',
         type = 'codelldb',
         request = 'launch',
-        program = 'godot.linuxbsd.editor.x86_64.mono',
+        program = '${env:godot}',
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+      {
+        name = 'Launch File',
+        type = 'codelldb',
+        request = 'launch',
+        program = '${command:pickFile}',
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
       },
