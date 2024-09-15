@@ -5,6 +5,7 @@
 return {
   {
     'iamcco/markdown-preview.nvim',
+    lazy = true,
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     build = 'cd app && npm install',
     init = function()
@@ -26,6 +27,15 @@ return {
       -- animation = true,
       -- insert_at_start = true,
       -- …etc.
+    },
+  },
+  {
+    'p00f/clangd_extensions.nvim',
+    lazy = true,
+    opts = {
+      inlay_hints = {
+        inline = false,
+      },
     },
   },
 }
